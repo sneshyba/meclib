@@ -1,0 +1,11 @@
+# Environment
+.venv
+
+# Mac system
+.DS_Store
+
+# Python files
+__pycache__/
+*.pyc
+*.pkl
+*.ipynb_checkpoints
