@@ -18,7 +18,7 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
-import MECLib.MECLib as CL
+import meclib as CL
 
 
 # In[3]:

@@ -12,11 +12,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-
-# TODO: remove
-# import sys; sys.path.append('../MECLib/')
-
-import MECLib.MECLib as CL
+import meclib as CL
 
 # In[17]:
 
