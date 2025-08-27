@@ -3,7 +3,7 @@ This is a library of python functions that support the Cambio suite of codes for
 # Installation
 This has been packaged on PyPI. To install, run
 ```sh
-pip install meclib
+python -m pip install meclib
 ```
 
 # Usage
