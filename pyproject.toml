@@ -1,6 +1,6 @@
 [project]
 name = "meclib"
-version = "0.1.0"
+version = "0.1.1"
 description = "Code for Modeling Earth's Climate course"
 authors = [{ name = "Steven Neshyba", email = "sneshyba@gmail.com" }]
 readme = "README.md"
