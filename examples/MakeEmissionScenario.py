@@ -60,7 +60,7 @@ plt.grid(True)
 plt.title("Emission scenario (GtC/year)")
 plt.xlabel("year")
 plt.ylabel("GtC/year")
-# plt.show()
+plt.show()
 
 # ### Saving your emissions scenario
 # In the cell below we create the dictionary, etc., and save it to a file.
