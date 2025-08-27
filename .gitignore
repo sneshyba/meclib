@@ -7,5 +7,8 @@
 # Python files
 __pycache__/
 *.pyc
-*.pkl
+# *.pkl
 *.ipynb_checkpoints
+
+# Other files
+*.docx
