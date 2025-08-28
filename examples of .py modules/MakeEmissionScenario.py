@@ -1,30 +1,13 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# ### Computational Guided Inquiry for Modeling Earth's Climate (Neshyba, 2025)
+### Computational Guided Inquiry for Modeling Earth's Climate (Neshyba, 2025)
 #
-# # Make an Emission Scenario
+# Make an Emission Scenario
 # The idea of this module is to create an emissions scenario -- a _schedule_ -- that describes how much carbon humans have released to the atmosphere in the past, and that makes projections about future emissions. We've done this before (ScheduledFlows), but this will allow us to specify long-term emissions.
 
-# In[16]:
-
-
+# Resources
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import meclib as CL
-
-# In[17]:
-
-
-# get_ipython().run_line_magic('matplotlib', 'inline')
-
-
-# ### Using ScheduledFlowsWithLTE
-# In the cell below, we calculate and plot an emissions scenario, $\epsilon (t)$, using MakeEmissionsScenarioLTE (which includes long-term emissions).
-
-# In[19]:
-
+import meclib.cl as cl
 
 # Parameters
 t_start = 1750
@@ -40,7 +23,7 @@ epslongterm = 2
 t_decarb_ppf_factor = 0.5
 
 # Create the scenario
-t, myeps = CL.MakeEmissionsScenarioLTE(
+t, myeps = cl.MakeEmissionsScenarioLTE(
     t_start,
     t_stop,
     nsteps,
@@ -50,8 +33,7 @@ t, myeps = CL.MakeEmissionsScenarioLTE(
     t_peak,
     t_decarb,
     epslongterm=epslongterm,
-    t_decarb_ppf_factor=t_decarb_ppf_factor,
-)
+    t_decarb_ppf_factor=t_decarb_ppf_factor)
 
 # Plot the scenario
 plt.figure()
@@ -62,11 +44,7 @@ plt.xlabel("year")
 plt.ylabel("GtC/year")
 plt.show()
 
-# ### Saving your emissions scenario
-# In the cell below we create the dictionary, etc., and save it to a file.
-
-# In[21]:
-
+### Creating the emissions scenario as a Python dictionary
 
 # Create an empty dictionary
 epsdictionary = dict()
@@ -95,13 +73,8 @@ epsdictionary["description"] = (
 # Report the contents of the dictionary
 print(epsdictionary)
 
-
-# ### Saving your emissions scenario
-# Use the cell below to save your emissions scenario (the entire dictionary -- data and metadata) as a pickle file.
-
-# In[23]:
-
+### Saving the emissions scenario
 
 # Assign a name for the file, and save it
-filename = "Peaks_in_2040_LTE_default.pkl"
-CL.SaveMyScenario(epsdictionary, filename)
+filename = "Peaks_in_2040_LTE.pkl"
+cl.SaveMyScenario(epsdictionary, filename)
