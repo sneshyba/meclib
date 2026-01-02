@@ -686,7 +686,7 @@ def CS_list_plots(ClimateState_list,plot_title,items_to_plot,colorlist=['k','b',
     return
 
 def CS_list_compare(CS_Cambio_lists,plot_titles,items_to_plot,colorlist=['k','b','g','r']):
-    print('From inside CS_list_compare ...')
+    # print('From inside CS_list_compare ...')
     linewidth = 3
     alpha = 0.3
     CS_CambioA_list, CS_CambioB_list = CS_Cambio_lists
@@ -701,8 +701,11 @@ def CS_list_compare(CS_Cambio_lists,plot_titles,items_to_plot,colorlist=['k','b'
         plt.xlabel('time (years)')
 
         if np.size(item) == 1:
+            print('Plotting just one item ...')
             item_arrayA = CollectClimateTimeSeries(CS_CambioA_list,item)
             item_arrayB = CollectClimateTimeSeries(CS_CambioB_list,item)
+            printmaxmin(time_arrayA,item_arrayA,label=plot_titleA+' ('+item+')')
+            printmaxmin(time_arrayB,item_arrayB,label=plot_titleB+' ('+item+')')
             if len(plot_titleA) != 0:
                 plotlabelA = plot_titleA+' ('+item+')'
             else:
@@ -714,6 +717,7 @@ def CS_list_compare(CS_Cambio_lists,plot_titles,items_to_plot,colorlist=['k','b'
             plt.plot(time_arrayA,item_arrayA,label=plotlabelA,color=colorlist[0],linewidth=linewidth,alpha=alpha)
             plt.plot(time_arrayB,item_arrayB,label=plotlabelB,color=colorlist[0],linewidth=linewidth)
         else:
+            print('Plotting several subitems ...')
             icolor = 0
             for subitem in item:
                 subitem_arrayA = CollectClimateTimeSeries(CS_CambioA_list,subitem)
