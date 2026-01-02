@@ -1,6 +1,9 @@
+LICENSE.md
+README.md
 pyproject.toml
-examples/CambioComparisons.py
-examples/MakeEmissionScenario.py
+examples_of_python_scripts/CambioComparisons.py
+examples_of_python_scripts/MakeEmissionScenario.py
+examples_of_python_scripts/VersionCheck.py
 meclib/__init__.py
 meclib/cl.py
 meclib.egg-info/PKG-INFO

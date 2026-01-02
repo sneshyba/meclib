@@ -4,6 +4,9 @@ from copy import deepcopy as makeacopy
 import pandas as pd
 import pickle
 
+def CheckWhichVersion():
+    print('Running a new version of cl ...')
+
 def SaveMyScenario(my_dict, filename):
     """Stores the stored scheduled flow dictionary"""
 
@@ -683,6 +686,7 @@ def CS_list_plots(ClimateState_list,plot_title,items_to_plot,colorlist=['k','b',
     return
 
 def CS_list_compare(CS_Cambio_lists,plot_titles,items_to_plot,colorlist=['k','b','g','r']):
+    print('From inside CS_list_compare ...')
     linewidth = 3
     alpha = 0.3
     CS_CambioA_list, CS_CambioB_list = CS_Cambio_lists

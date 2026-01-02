@@ -5,7 +5,20 @@ Summary: Code for Modeling Earth's Climate course
 Author-email: Steven Neshyba <sneshyba@gmail.com>
 Requires-Python: >=3.8
 Description-Content-Type: text/markdown
+License-File: LICENSE.md
 Requires-Dist: numpy
 Requires-Dist: matplotlib
 Requires-Dist: pandas
 Requires-Dist: pint
+Dynamic: license-file
+
+This is a library of python functions that support the Cambio suite of codes for modeling Earth's climate.
+
+# Installation
+This has been packaged on PyPI. To install, run
+```sh
+python -m pip install meclib
+```
+
+# Usage
+See examples in the examples folder.

@@ -1,3 +1,6 @@
 dist
-examples
+examples_of_python_notebooks
+examples_of_python_scripts
+instructor_notebooks
 meclib
+student_notebooks_for_a_15_week_course
