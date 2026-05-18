@@ -16,7 +16,7 @@ def SaveMyScenario(my_dict, filename):
     # Return
     return
 
-def LoadMyScenario(filename,verbose=False):
+def LoadMyScenario(filename,field='emissions',units='GtC/yr',verbose=False):
     """Loads the stored scheduled flow dictionary, with an option to plot"""
 
     # Load dictionary from a file
@@ -27,7 +27,7 @@ def LoadMyScenario(filename,verbose=False):
 
     # This extracts the time and emissions from the dataframe
     time = np.array(epsdf['time'])
-    eps = np.array(epsdf['emissions'])
+    eps = np.array(epsdf[field])
 
     # Graph the time series (if flagged)
     if verbose:
@@ -38,10 +38,11 @@ def LoadMyScenario(filename,verbose=False):
         plt.grid(True)
         plt.title(filename)
         plt.xlabel('year')
-        plt.ylabel('GtC/year')
+        plt.ylabel(units)
         
     # Return
     return time, eps, my_dict_loaded 
+    
     
 def CreateClimateParams(epsdictionary,k_la=120):
     """Returns a structured dictionary containing climate parameters"""
@@ -77,7 +78,11 @@ def CreateClimateParams(epsdictionary,k_la=120):
     r = 2/3 
 
     # Ocean-to-atmosphere flux constant based on Cambio1.0 equations
-    k = epsdictionary['k']
+    try:
+        k = epsdictionary['k']
+    except:
+        k = 0.0166
+  
     k_oa = k*(k_ao/(r*k_al1)-1) # constraining to satisfy the ratio r
 
     # Atmosphere-to-land feedback parameters
@@ -293,6 +298,15 @@ def Diagnose_Stochastic_C_atm(C_atm,ClimateParams):
     Stochastic_C_atm_std_dev = ClimateParams['Stochastic_C_atm_std_dev']
     C_atm_new = np.random.normal(C_atm, Stochastic_C_atm_std_dev)
     return C_atm_new 
+
+def MyEmissionScenario(\
+    t_peak,t_decarb,epslongterm,t_start=1750,t_stop=2150,nsteps=1000,k=0.0166,eps_0=9,t_0=2003,t_decarb_ppf_factor=1):
+    """Returns an emissions scenario that has a long-term, post-peak emission with lots of default values"""
+    t_decarb_ppf = t_decarb*t_decarb_ppf_factor
+    t = np.linspace(t_start,t_stop,nsteps)
+    time, eps = MakeEmissionsScenario(t_start,t_stop,nsteps,k,eps_0,t_0,t_peak,t_decarb)
+    neweps = PostPeakFlattener(time,eps,t_decarb_ppf,epslongterm)
+    return time, neweps
 
 def MakeEmissionsScenario(t_start,t_stop,nsteps,k,eps_0,t_0,t_peak,t_decarb):
     """Returns an emissions scenario"""
